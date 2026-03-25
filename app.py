@@ -1,9 +1,7 @@
 from dotenv import load_dotenv
 load_dotenv()
 
-import os
 import streamlit as st
-
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
 
@@ -17,12 +15,10 @@ def get_llm_response(user_input, expert_type):
     else:
         system_prompt = "あなたは親切なアシスタントです。"
 
-    api_key = st.secrets["OPENAI_API_KEY"]
-
     llm = ChatOpenAI(
         temperature=0.7,
         model="gpt-4o-mini",
-        api_key=api_key
+        api_key=st.secrets["OPENAI_API_KEY"]
     )
 
     messages = [
